@@ -1,0 +1,63 @@
+package edu.csupomona.cs.cs356.assignment_1;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public class SimulationDriver {
+
+	public static void main(String[] args) {
+		ArrayList<Student> studentList = new ArrayList<Student>();
+
+		for (int a = 0; a < 4; a++) {
+			studentList.add(new Student((int) ((Math.random() * 9000) + 1001)));
+		}
+		
+		int[] studentID = new int[studentList.size()];
+		
+		for (int a = 0; a < 4; a++) {
+			studentID[a] = studentList.get(a).getId();
+		}
+
+		iClicker clicker = new iClicker(studentID);
+		
+		Question question1 = new Question(
+				"1. Who is the FOB teacher?\n A: Rodriguez \n B: Lan Yan(Foblin) \n C: Diaz \n D: Brown\n",
+				'B');
+		System.out.println(question1.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question1);
+		clicker.countAnswers();
+		Question question2 = new Question(
+				"2. Finish the sentence: ____ you.\n A: Fuck \n B: Suck \n C: Troll \n D: Nigger\n",
+				'A');
+		System.out.println(question2.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question2);
+		clicker.countAnswers();
+		Question question3 = new Question(
+				"3. Who is a faggot?\n A: Zack \n B: Robert \n C: Brian \n D: Dick\n",
+				'C');
+		System.out.println(question3.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question3);
+		clicker.countAnswers();
+		Question question4 = new Question(
+				"4. You want to see my genitals?\n A: Yes \n B: No \n C: Maybe \n D: So\n",
+				'D');
+		System.out.println(question4.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question4);
+		clicker.countAnswers();
+	}
+	
+	private static Hashtable<Integer, Character> random (ArrayList<Student> studentList){
+		Hashtable<Integer, Character> hash = new Hashtable<Integer, Character>();
+		for (int a = 0; a < 4; a++) {
+			studentList.get(a).chooseAnswer();
+		}
+		for (int a = 0; a < 4; a++) {
+			hash.put(studentList.get(a).getId(), studentList.get(a).answer);
+		}
+		return hash;
+	}
+}
