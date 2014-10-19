@@ -1,0 +1,63 @@
+package edu.csupomona.cs.cs356.assignment_1;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public class SimulationDriver {
+
+	public static void main(String[] args) {
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		int randomStudents = (int) ((Math.random() * 32) + 1);
+		for (int a = 0; a < randomStudents; a++) {
+			studentList.add(new Student((int) ((Math.random() * 9000) + 1001)));
+		}
+		
+		int[] studentID = new int[studentList.size()];
+		
+		for (int a = 0; a < 4; a++) {
+			studentID[a] = studentList.get(a).getId();
+		}
+
+		iClicker clicker = new iClicker(studentID);
+		
+		Question question1 = new Question(
+				"1. Who is the CS 356 professor?\n A: Edwin Rodriguez \n B: Yu Sun \n C: Tony Diaz \n D: Lan Yan\n",
+				'B');
+		System.out.println(question1.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question1);
+		clicker.countAnswers();
+		Question question2 = new Question(
+				"2. Finish the sentence: ____ world.\n A: Hello \n B: Hi \n C: Wave \n D: CS\n",
+				'A');
+		System.out.println(question2.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question2);
+		clicker.countAnswers();
+		Question question3 = new Question(
+				"3. How many units can you take per quarter?\n A: 30 \n B: 12 \n C: 20 \n D: 16\n",
+				'C');
+		System.out.println(question3.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question3);
+		clicker.countAnswers();
+		Question question4 = new Question(
+				"4. What is Rick's last name from The Walking Dead?\n A: Astley \n B: Sun \n C: Luong \n D: Grimes\n",
+				'D');
+		System.out.println(question4.getQuestion());
+		clicker.submitAnswers(random(studentList));
+		clicker.displayCorrect(question4);
+		clicker.countAnswers();
+	}
+	
+	private static Hashtable<Integer, Character> random (ArrayList<Student> studentList){
+		Hashtable<Integer, Character> hash = new Hashtable<Integer, Character>();
+		for (int a = 0; a < 4; a++) {
+			studentList.get(a).chooseAnswer();
+		}
+		for (int a = 0; a < 4; a++) {
+			hash.put(studentList.get(a).getId(), studentList.get(a).answer);
+		}
+		return hash;
+	}
+}

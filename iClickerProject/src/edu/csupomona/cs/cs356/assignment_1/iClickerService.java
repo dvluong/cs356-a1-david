@@ -6,9 +6,13 @@ public interface iClickerService {
 	
 	void countAnswers();
 	
-	void displayCorrect(Question question);
+	void displayCorrect(Question question, int numberOfStudents);
 	
 	void submitAnswers(Hashtable<Integer, Character> table);
 	
 	void displayQuestion(Question question);
+	
+	void countSubmissions(int number);
+	
+	void displaySubmissions(int ID);
 }

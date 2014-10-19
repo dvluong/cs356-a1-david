@@ -6,8 +6,8 @@ public class iClicker implements iClickerService {
 
 	Hashtable<Integer, Character> table = new Hashtable<Integer, Character>();
 
-	int[] IDs;
-
+	private int[] IDs;
+	private int numberOfSubmissions = 0;
 	public iClicker(int[] IDs) {
 		this.IDs = IDs;
 	}
@@ -32,21 +32,26 @@ public class iClicker implements iClickerService {
 				D++;
 			}
 		}
+		System.out.println("Total answers: ");
 		System.out.println("A: " + A + "\nB: " + B + "\nC: " + C + "\nD: " + D
 				+ "\n");
 	}
 
-	public void displayCorrect(Question question) {
-		for (int a = 0; a < 4; a++) {
+	public void displayCorrect(Question question, int numberOfStudents) {
+		int correct = 0;
+		int incorrect = 0;
+		for (int a = 0; a < numberOfStudents; a++) {
 			if (question.getAnswer() == table.get(IDs[a])) {
-				System.out.println("Student: " + IDs[a] + " chose "
-						+ table.get(IDs[a]) + ". Correct.\n");
+				System.out.println("Student" + " " + (a + 1) + ": " + IDs[a] + " chose " + table.get(IDs[a]) + ". Correct.\n");
+				correct++;
 			} else {
-				System.out.println("Student: " + IDs[a] + " chose "
-						+ table.get(IDs[a]) + ". Incorrect.\n");
+				System.out.println("Student" + " " + (a + 1) + ": ID " + IDs[a] + " chose " + table.get(IDs[a]) + ". Incorrect.\n");
+				incorrect++;
 			}
-
 		}
+	
+		System.out.println("Total amount of correct answers: " + correct + "\n");
+		System.out.println("Total amount of incorrect answers: " + incorrect + "\n");
 	}
 
 	public void submitAnswers(Hashtable<Integer, Character> studentAnswers) {
@@ -55,6 +60,19 @@ public class iClicker implements iClickerService {
 
 	public void displayQuestion(Question question) {
 		System.out.println(question.getQuestion());
+	}
+
+	public void countSubmissions(int number) {
+		this.numberOfSubmissions = number;
+	}
+
+
+	public void displaySubmissions(int ID) {
+		if (numberOfSubmissions == 1){
+			System.out.println("Student: " + ID + " submitted: " + numberOfSubmissions + " time.\n");
+		} else {
+			System.out.println("Student: " + ID + " submitted: " + numberOfSubmissions + " times.\n");
+		}
 	}
 
 }
