@@ -1,0 +1,168 @@
+package edu.csupomona.cs.cs356.assignment_1;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public class SimulationDriver {
+
+	public static void main(String[] args) {
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		final int numberOfStudents = (int) ((Math.random() * 30) + 1);
+		
+		for (int a = 0; a < numberOfStudents; a++) {
+			studentList.add(new Student((int) ((Math.random() * 9000000) + 1000001)));
+		}
+		
+		int[] studentID = new int[studentList.size()];
+		
+		for (int a = 0; a < numberOfStudents; a++) {
+			studentID[a] = studentList.get(a).getId();
+		}
+
+		iClicker clicker = new iClicker(studentID);
+		int count = 0;
+		Question question1 = new Question("1. Who is the CS 356 professor?\n A: Edwin Rodriguez \n B: Yu Sun \n C: Tony Diaz \n D: Lan Yan\n", 'B');
+		System.out.println(question1.getQuestion());
+		int randomNumber = (int) ((Math.random() * 20) + 1);
+		for (int a = 0; a < numberOfStudents; a++) {
+			while (true){
+				clicker.countSubmissions(count);
+				if (randomNumber > 0 && randomNumber <= 5){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 5 && randomNumber <= 10){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 10 && randomNumber <= 15){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 15 && randomNumber <= 20){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if(randomNumber == 0){
+					clicker.countSubmissions(count);
+					clicker.displaySubmissions(studentID[a]);
+					break;
+				}
+			}
+			count = 0;
+			randomNumber = (int) ((Math.random() * 20) + 1);
+		}		
+		clicker.displayCorrect(question1, numberOfStudents);
+		clicker.countAnswers();
+		Question question2 = new Question("2. Finish the sentence: ____ world.\n A: Hello \n B: Hi \n C: Wave \n D: CS\n", 'A');
+		System.out.println(question2.getQuestion());
+		for (int a = 0; a < numberOfStudents; a++) {
+			while (true){
+				clicker.countSubmissions(count);
+				if (randomNumber > 0 && randomNumber <= 5){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 5 && randomNumber <= 10){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 10 && randomNumber <= 15){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 15 && randomNumber <= 20){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if(randomNumber == 0){
+					clicker.countSubmissions(count);
+					clicker.displaySubmissions(studentID[a]);
+					break;
+				}
+			}
+			count = 0;
+			randomNumber = (int) ((Math.random() * 20) + 1);
+		}
+		clicker.displayCorrect(question2, numberOfStudents);
+		clicker.countAnswers();
+		
+		Question question3 = new Question("3. How many units can you take per quarter?\n A: 30 \n B: 12 \n C: 20 \n D: 16\n", 'C');
+		System.out.println(question3.getQuestion());
+		for (int a = 0; a < numberOfStudents; a++) {
+			while (true){
+				clicker.countSubmissions(count);
+				if (randomNumber > 0 && randomNumber <= 5){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 5 && randomNumber <= 10){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 10 && randomNumber <= 15){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 15 && randomNumber <= 20){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if(randomNumber == 0){
+					clicker.countSubmissions(count);
+					clicker.displaySubmissions(studentID[a]);
+					break;
+				}
+			}
+			count = 0;
+			randomNumber = (int) ((Math.random() * 20) + 1);
+		}
+		clicker.displayCorrect(question3, numberOfStudents);
+		clicker.countAnswers();
+		
+		Question question4 = new Question("4. What is Rick's last name from The Walking Dead?\n A: Astley \n B: Sun \n C: Luong \n D: Grimes\n", 'D');
+		System.out.println(question4.getQuestion());
+		for (int a = 0; a < numberOfStudents; a++) {
+			while (true){
+				clicker.countSubmissions(count);
+				if (randomNumber > 0 && randomNumber <= 5){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 5 && randomNumber <= 10){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 10 && randomNumber <= 15){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if (randomNumber > 15 && randomNumber <= 20){
+					clicker.submitAnswers(random(studentList, numberOfStudents));
+					randomNumber--;
+					count++;
+				} else if(randomNumber == 0){
+					clicker.countSubmissions(count);
+					clicker.displaySubmissions(studentID[a]);
+					break;
+				}
+			}
+			count = 0;
+			randomNumber = (int) ((Math.random() * 20) + 1);
+		}
+		clicker.displayCorrect(question4, numberOfStudents);
+		clicker.countAnswers();
+	}
+	
+	private static Hashtable<Integer, Character> random (ArrayList<Student> studentList, int numberOfStudents){
+		Hashtable<Integer, Character> hash = new Hashtable<Integer, Character>();
+		
+		for (int a = 0; a < numberOfStudents; a++) {
+			studentList.get(a).chooseAnswer();
+		}
+		for (int a = 0; a < numberOfStudents; a++) {
+			hash.put(studentList.get(a).getId(), studentList.get(a).answer);
+		}
+		return hash;
+	}
+}

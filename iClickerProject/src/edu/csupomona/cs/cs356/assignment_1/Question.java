@@ -1,10 +1,20 @@
 package edu.csupomona.cs.cs356.assignment_1;
-
+/**
+ * CS 356: Object Oriented Programming
+ * Professor: Yu Sun
+ *
+ * Assignment 1
+ *
+ * <The Question class as a constructor that accepts a question and an answer
+ * and contains accessor methods.>
+ *
+ * David V Luong
+ */
 public class Question {
 	private String question;
-	private char answer;
+	private String answer;
 	
-	public Question(String question, char answer){
+	public Question(String question, String answer){
 		this.setQuestion(question);
 		this.setAnswer(answer);
 	}
@@ -17,11 +27,11 @@ public class Question {
 		this.question = question;
 	}
 
-	public char getAnswer() {
+	public String getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(char answer) {
+	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
 }
